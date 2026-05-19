@@ -1,0 +1,65 @@
+/* Variance analysis on a YoY basis
+If Budget > Actuals = Favorable
+If Budget < Actuals = Unfavorable */
+
+-- 2021 Variance Analysis
+SELECT 
+    EXTRACT(MONTH FROM transaction_date) AS "Month",
+    department AS "Department",
+    SUM(budget_amount) AS "Total Budget",
+    SUM(actual_amount) AS "Total Actual",
+    (SUM(budget_amount) - SUM(actual_amount)) AS "Variance",
+    CASE 
+        WHEN (SUM(budget_amount) - SUM(actual_amount)) >= 0 THEN 'Favorable'
+        ELSE 'Unfavorable'
+    END AS "Variance Status"
+FROM budget_vs_actual
+WHERE EXTRACT(YEAR FROM transaction_date) = 2021
+GROUP BY 
+    EXTRACT(MONTH FROM transaction_date),
+    department
+ORDER BY 
+    "Month",
+    "Department";
+
+
+-- 2022 Variance Analysis
+SELECT 
+    EXTRACT(MONTH FROM transaction_date) AS "Month",
+    department AS "Department",
+    SUM(budget_amount) AS "Total Budget",
+    SUM(actual_amount) AS "Total Actual",
+    (SUM(budget_amount) - SUM(actual_amount)) AS "Variance",
+    CASE 
+        WHEN (SUM(budget_amount) - SUM(actual_amount)) >= 0 THEN 'Favorable'
+        ELSE 'Unfavorable'
+    END AS "Variance Status"
+FROM budget_vs_actual
+WHERE EXTRACT(YEAR FROM transaction_date) = 2022
+GROUP BY 
+    EXTRACT(MONTH FROM transaction_date),
+    department
+ORDER BY 
+    "Month",
+    "Department";
+
+
+-- 2023 Variance Analysis
+SELECT 
+    EXTRACT(MONTH FROM transaction_date) AS "Month",
+    department AS "Department",
+    SUM(budget_amount) AS "Total Budget",
+    SUM(actual_amount) AS "Total Actual",
+    (SUM(budget_amount) - SUM(actual_amount)) AS "Variance",
+    CASE 
+        WHEN (SUM(budget_amount) - SUM(actual_amount)) >= 0 THEN 'Favorable'
+        ELSE 'Unfavorable'
+    END AS "Variance Status"
+FROM budget_vs_actual
+WHERE EXTRACT(YEAR FROM transaction_date) = 2023
+GROUP BY 
+    EXTRACT(MONTH FROM transaction_date),
+    department
+ORDER BY 
+    "Month",
+    "Department";
