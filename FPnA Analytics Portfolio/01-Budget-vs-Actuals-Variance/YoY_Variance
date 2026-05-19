@@ -6,60 +6,101 @@ If Budget < Actuals = Unfavorable */
 SELECT 
     EXTRACT(YEAR FROM transaction_date) AS "Year",
     department AS "Department",
+    --category AS "Category",
     SUM(budget_amount) AS "Total Budget",
     SUM(actual_amount) AS "Total Actual",
     (SUM(budget_amount) - SUM(actual_amount)) AS "Variance",
     CASE 
         WHEN (SUM(budget_amount) - SUM(actual_amount)) >= 0 THEN 'Favorable'
         ELSE 'Unfavorable'
-    END AS "Variance Status"
+    END AS "Variance Status",
+    SUM(actual_amount)/SUM(budget_amount) AS "Utilisation Rate"
 FROM budget_vs_actual
 WHERE EXTRACT(YEAR FROM transaction_date) = 2021
 GROUP BY 
     EXTRACT(YEAR FROM transaction_date),
     department
+    --category
+/* to show only favorable expenses
+HAVING 
+    (SUM(budget_amount) - SUM(actual_amount)) >= 0
+    */
 ORDER BY 
     "Year",
-    "Department";
+    "Department",
+    "Variance" ASC;
 
+/* 2021 Findings
+- All departments are in an overbudget capacity.
+- Top 3 largest spenders and their utilisation rate are Finance (1.13), HR (1.08), and IT (1.07) which are support departments.
+- Sales department is the lowest spender but still at overbudget.
+- Top 5 Unfavorable Variances:
+    Operations Department with Salaries
+    Marketing Department with Marketing expense
+    Marketing Deparmetn with Training expense
+    Finance with Infrastructure
+    Operations with Marketing expense
+- The only favorable expenses are as follows:
+    HR Department with Utilities expense at 21K
+    IT Department with Infrastructure at 339K
+
+Conclusions made based on findings:
+    FY2021 is operating at an inefficiency. With all departments reporting an unfavorable variance, it signifies that the company has either overspent or failed to forecast external factors in changes price or quantity for the expenses.
+*/
 
 -- 2022 Variance Analysis
 SELECT 
     EXTRACT(YEAR FROM transaction_date) AS "Year",
     department AS "Department",
+    category AS "Category",
     SUM(budget_amount) AS "Total Budget",
     SUM(actual_amount) AS "Total Actual",
     (SUM(budget_amount) - SUM(actual_amount)) AS "Variance",
     CASE 
         WHEN (SUM(budget_amount) - SUM(actual_amount)) >= 0 THEN 'Favorable'
         ELSE 'Unfavorable'
-    END AS "Variance Status"
+    END AS "Variance Status",
+    SUM(actual_amount)/SUM(budget_amount) AS "Utilisation Rate"
 FROM budget_vs_actual
 WHERE EXTRACT(YEAR FROM transaction_date) = 2022
 GROUP BY 
     EXTRACT(YEAR FROM transaction_date),
-    department
+    department,
+    category
+/* to show only favorable expenses
+HAVING 
+    (SUM(budget_amount) - SUM(actual_amount)) >= 0
+    */
 ORDER BY 
     "Year",
-    "Department";
+    "Department",
+    "Variance" DESC;
 
 
 -- 2023 Variance Analysis
 SELECT 
     EXTRACT(YEAR FROM transaction_date) AS "Year",
     department AS "Department",
+    category AS "Category",
     SUM(budget_amount) AS "Total Budget",
     SUM(actual_amount) AS "Total Actual",
     (SUM(budget_amount) - SUM(actual_amount)) AS "Variance",
     CASE 
         WHEN (SUM(budget_amount) - SUM(actual_amount)) >= 0 THEN 'Favorable'
         ELSE 'Unfavorable'
-    END AS "Variance Status"
+    END AS "Variance Status",
+    SUM(actual_amount)/SUM(budget_amount) AS "Utilisation Rate"
 FROM budget_vs_actual
 WHERE EXTRACT(YEAR FROM transaction_date) = 2023
 GROUP BY 
     EXTRACT(YEAR FROM transaction_date),
-    department
+    department,
+    category
+/* to show only favorable expenses
+HAVING 
+    (SUM(budget_amount) - SUM(actual_amount)) >= 0
+    */
 ORDER BY 
     "Year",
-    "Department";
+    "Department",
+    "Variance" DESC;

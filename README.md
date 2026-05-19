@@ -6,10 +6,10 @@ Welcome to my FP&A Analytics Portfolio. I am Jericho James, a Certified Public A
 This repository bridges the gap between traditional corporate finance and advanced data analytics. Designed for executive review, the projects contained here demonstrate how complex financial datasets can be transformed into strategic insights using SQL. The focus is on automating variance analysis, optimizing cash flow visibility, and building robust predictive models.
 
 ## Core Competencies Demonstrated
-* **Corporate Reporting:** 
-* **Predictive Modeling:** 
-* **Subscription Economics:** 
-* **Liquidity Analysis:** 
+* **Corporate Reporting** 
+* **Predictive Modeling** 
+* **Subscription Economics** 
+* **Liquidity Analysis** 
 
 ---
 
