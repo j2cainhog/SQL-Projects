@@ -4,7 +4,7 @@ If Budget < Actuals = Unfavorable */
 
 -- 2021 Variance Analysis
 SELECT 
-    EXTRACT(MONTH FROM transaction_date) AS "Month",
+    EXTRACT(YEAR FROM transaction_date) AS "Year",
     department AS "Department",
     SUM(budget_amount) AS "Total Budget",
     SUM(actual_amount) AS "Total Actual",
@@ -16,16 +16,16 @@ SELECT
 FROM budget_vs_actual
 WHERE EXTRACT(YEAR FROM transaction_date) = 2021
 GROUP BY 
-    EXTRACT(MONTH FROM transaction_date),
+    EXTRACT(YEAR FROM transaction_date),
     department
 ORDER BY 
-    "Month",
+    "Year",
     "Department";
 
 
 -- 2022 Variance Analysis
 SELECT 
-    EXTRACT(MONTH FROM transaction_date) AS "Month",
+    EXTRACT(YEAR FROM transaction_date) AS "Year",
     department AS "Department",
     SUM(budget_amount) AS "Total Budget",
     SUM(actual_amount) AS "Total Actual",
@@ -37,16 +37,16 @@ SELECT
 FROM budget_vs_actual
 WHERE EXTRACT(YEAR FROM transaction_date) = 2022
 GROUP BY 
-    EXTRACT(MONTH FROM transaction_date),
+    EXTRACT(YEAR FROM transaction_date),
     department
 ORDER BY 
-    "Month",
+    "Year",
     "Department";
 
 
 -- 2023 Variance Analysis
 SELECT 
-    EXTRACT(MONTH FROM transaction_date) AS "Month",
+    EXTRACT(YEAR FROM transaction_date) AS "Year",
     department AS "Department",
     SUM(budget_amount) AS "Total Budget",
     SUM(actual_amount) AS "Total Actual",
@@ -58,8 +58,8 @@ SELECT
 FROM budget_vs_actual
 WHERE EXTRACT(YEAR FROM transaction_date) = 2023
 GROUP BY 
-    EXTRACT(MONTH FROM transaction_date),
+    EXTRACT(YEAR FROM transaction_date),
     department
 ORDER BY 
-    "Month",
+    "Year",
     "Department";
